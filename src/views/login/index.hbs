@@ -1,0 +1,57 @@
+<div class="flex flex-col md:flex-row bg-slate-800 min-h-screen">
+  <!-- Lado izquierdo con fondo oscuro -->
+  <div class="md:w-1/2 w-full flex flex-col justify-center items-center min-h-screen bg-slate-800 p-6 md:p-0">
+
+    <img src="/images/graviti.png" class="max-w-full md:max-w-xs" alt="Logo" id="scroll-arrow">
+    
+    <div class="text-4xl md:hidden">
+  <i class="text-white m-2 block animate-bounce cursor-pointer" data-feather="chevrons-down" id="scroll-arrow"></i>
+  </div>
+
+  </div>
+
+  <!-- Lado derecho con formulario -->
+  <div class="md:w-1/2 w-full flex flex-col justify-center items-center min-h-screen shadow-lg bg-gray-200 p-6 md:p-0" style="border-bottom-left-radius: 60px;">
+    <h2 class="text-2xl font-bold text-center mb-8 uppercase hover:text-red-600">
+      Secure-Share
+    </h2>
+
+    <div id="form-section" class="w-full max-w-md bg-white shadow-md rounded-lg px-6 py-8 md:px-10 md:py-12 mx-auto">
+      <form action="" method="POST">
+        <div class="mb-6">
+          <label for="correo" class="block text-gray-700 text-sm font-bold mb-2">Correo</label>
+          <div class="flex items-center border rounded py-2 px-3 shadow-sm focus-within:ring focus-within:border-slate-800">
+            <i class="mr-4" data-feather="mail"></i>
+            <input class="appearance-none border-none w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="correo" id="correo" type="text" placeholder="Correo">
+          </div>
+          {{#if error}}
+          <p class="text-red-500 text-xs italic mt-2">{{error}}</p>
+          {{/if}}
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+          <div class="flex items-center border rounded py-2 px-3 shadow-sm focus-within:ring focus-within:border-slate-800">
+            <i class="mr-4" data-feather="lock"></i>
+            <input class="appearance-none border-none w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="password" id="password" type="password" placeholder="**********">
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <button class="bg-slate-800 hover:bg-red-500 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition duration-700 ease-in-out" type="submit">Ingresar</button>
+        </div>
+      </form>
+    </div>
+
+    <p class="text-center text-xs text-slate-800 mt-8 italic hover:text-red-600">&copy; -ODD- Omnichannel Data Driven Distinctive Development</p>
+  </div>
+</div>
+
+ <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+ 
+  <script>
+    feather.replace();
+
+    document.getElementById('scroll-arrow').addEventListener('click', function() {
+      document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+  </script>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Share</title>
+  <link rel="shortcut icon" href="/images/favicon.webp">
+  <!-- Tailwind CSS Link -->
+  <link rel="stylesheet" href="/images/output.css">
+  <!-- Feather Icons Link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.css">
+</head>
+<body class="bg-gray-200">
+
+  {{#if name}}
+  <nav class="bg-slate-800 border-gray-200 text-white">
+    <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+      <div class="flex items-center">
+        <img src="/images/bbdo.webp" class="h-6 mr-8 hover:shadow-md hover:shadow-red-500/50" alt="Logo" />
+      </div>
+
+      <!-- Botón de Menú para Móviles -->
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-white focus:outline-none">
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+
+      <!-- Menú para pantallas grandes -->
+      <div class="hidden md:flex md:items-center md:space-x-8">
+        <a href="/" class="flex items-center self-center font-semibold whitespace-nowrap hover:text-carma px-8">
+          Inicio &nbsp;
+          <i data-feather="cloud-lightning"></i>
+        </a>
+
+        {{#ifEquals correo mailAdmin}}
+          <a href="/users" class="flex items-center self-center font-semibold whitespace-nowrap hover:text-carma px-8">
+            Usuarios &nbsp;
+            <i data-feather="users"></i>
+          </a>
+        {{/ifEquals}}
+
+        <div class="relative">
+          <a onclick="dropdown()" href="#" class="bg-slate-800 flex items-center hover:text-carma">
+            <p>{{name}} &nbsp;</p>
+            <span class="rotate-180" id="arrow">
+              <i data-feather="arrow-down-circle" class="hidden text-sm" id="down"></i>
+              <i data-feather="arrow-up-circle" class="" id="up"></i>
+            </span>
+          </a>
+
+          <div class="hidden" id="submenu">
+            <ul class="bg-slate-800 absolute right-0 w-40 py-2 border border-gray-100 rounded-lg shadow-md z-10">
+              <li>
+                <a href="/logout" class="flex items-center text-carma block px-4 py-2 hover:bg-gray-100 hover:text-gray-700">
+                  Cerrar sesión <i data-feather="log-out" class="pl-2"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menú desplegable para móviles -->
+    <div class="hidden md:hidden" id="navbar-default">
+      <ul class="font-medium flex flex-col items-center p-4 mt-4 border border-gray-100 rounded-lg bg-slate-800">
+        <li>
+          <a href="/" class="flex items-center self-center font-semibold whitespace-nowrap hover:text-carma px-8">
+            Inicio &nbsp;
+            <i data-feather="cloud-lightning"></i>
+          </a>
+        </li>
+
+        {{#ifEquals correo mailAdmin}}
+          <li>
+            <a href="/users" class="flex items-center self-center font-semibold whitespace-nowrap hover:text-carma px-8">
+              Usuarios &nbsp;
+              <i data-feather="users"></i>
+            </a>
+          </li>
+        {{/ifEquals}}
+
+        <li class="relative">
+          <a onclick="dropdown()" href="#" class="bg-slate-800 flex items-center hover:text-carma">
+            <p>{{name}} &nbsp;</p>
+            <span class="rotate-180" id="arrow-mobile">
+              <i data-feather="arrow-down-circle" class="hidden text-sm" id="down-mobile"></i>
+              <i data-feather="arrow-up-circle" class="" id="up-mobile"></i>
+            </span>
+          </a>
+
+          <div class="hidden" id="submenu-mobile">
+            <ul class="bg-slate-800 w-40 py-2 border border-gray-100 rounded-lg shadow-md z-10">
+              <li>
+                <a href="/logout" class="flex items-center text-carma block px-4 py-2 hover:bg-gray-100 hover:text-gray-700">
+                  Cerrar sesión <i data-feather="log-out" class="pl-2"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  {{/if}}
+
+  {{{body}}}
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace();
+
+    function dropdown() {
+      document.querySelector("#submenu").classList.toggle("hidden");
+      document.querySelector("#up").classList.toggle("hidden");
+      document.querySelector("#down").classList.toggle("hidden");
+    }
+
+    function dropdownMobile() {
+      document.querySelector("#submenu-mobile").classList.toggle("hidden");
+      document.querySelector("#up-mobile").classList.toggle("hidden");
+      document.querySelector("#down-mobile").classList.toggle("hidden");
+    }
+
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      var nav = document.getElementById('navbar-default');
+      nav.classList.toggle('hidden');
+    });
+
+    document.getElementById('arrow-mobile').addEventListener('click', dropdownMobile);
+  </script>
+</body>
+</html>
